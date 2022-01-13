@@ -6,7 +6,8 @@ sudo apt-get -y install nginx
 sudo service nginx start
 
 # Creating directories
-sudo mkdir /data/ /data/web_static/ /data/web_static/releases/ /data/web_static/shared/ /data/web_static/releases/test/
+sudo mkdir -p /data/web_static/shared/
+sudo mkdir -p /data/web_static/releases/test/
 
 # Giving Ownership and permissions
 sudo chown -R ubuntu:ubuntu /data/
