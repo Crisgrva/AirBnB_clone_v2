@@ -19,8 +19,8 @@ ln -sf /data/web_static/releases/test/ /data/web_static/current
 chown -R ubuntu:ubuntu /data/
 
 # Creating alias for location in nginx conf
-chmod 777 /etc/nginx/sites-available/
-sed -i "/server_name _;/ a \\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default
+# sed -i "/server_name _;/ a \\\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}" /etc/nginx/sites-available/default
+sed -i '48i \\tlocation /hbnb_static {\n\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
 
 # Restarting nginx
 service nginx restart
