@@ -9,14 +9,14 @@ sudo service nginx start
 sudo mkdir /data/ /data/web_static/ /data/web_static/releases/ /data/web_static/shared/ /data/web_static/releases/test/
 
 # Giving Ownership and permissions
-sudo chown -R ubuntu: /data/
+sudo chown -R ubuntu:ubuntu /data/
 
 # Creating fake html to test
 SIMPLE_HTML="<html>\n  <head>\n  </head>\n  <body>\n    Holberton School\n  </body>\n</html>"
-echo -e $SIMPLE_HTML > /data/web_static/releases/test/index.html
+echo -e "$SIMPLE_HTML" > /data/web_static/releases/test/index.html
 
 # Creating symbolic link
-ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 # Creating alias for location in nginx conf
 sudo chmod 777 /etc/nginx/sites-enabled/
