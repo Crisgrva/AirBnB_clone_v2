@@ -13,8 +13,7 @@ sudo mkdir -p /data/web_static/releases/test/
 sudo chown -R ubuntu:ubuntu /data/
 
 # Creating fake html to test
-SIMPLE_HTML="<html>\n  <head>\n  </head>\n  <body>\n    Holberton School\n  </body>\n</html>"
-sudo echo -e "$SIMPLE_HTML" | sudo tee /data/web_static/releases/test/index.html
+sudo echo -e "<html>\n  <head>\n  </head>\n  <body>\n    Holberton School\n  </body>\n</html>" | sudo tee /data/web_static/releases/test/index.html
 
 # Creating symbolic link
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
