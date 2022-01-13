@@ -17,8 +17,9 @@ def do_pack():
     it should return None
     """
     try:
-        path = "web_static_{}".format(datetime.now().strftime("%Y%m%d%H%M%S"))
         local('mkdir -p versions')
+        date = str(datetime.now().strftime("%Y%m%d%H%M%S"))
+        path = "versions/web_static_{}".format(date)
         local("tar -cvzf {}.tgz web_static".format(path))
         return path
     except Exception as e:
