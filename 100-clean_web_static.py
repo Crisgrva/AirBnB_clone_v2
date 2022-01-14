@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """
-fab -f 100-clean_web_static.py do_clean:number=2 -i ~/.ssh/school -u ubuntu > /dev/null 2>&1
 Deletes out-of-date archives,
 using the function do_clean
 """
