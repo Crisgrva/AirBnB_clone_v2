@@ -22,8 +22,9 @@ def do_pack():
     try:
         local('mkdir -p versions')
         date = str(datetime.now().strftime("%Y%m%d%H%M%S"))
-        path = "versions/web_static_{}".format(date)
-        local("tar -cvzf {}.tgz web_static".format(path))
+        path = "versions/web_static_{}.tgz".format(date)
+        local("tar -cvzf {} web_static".format(path))
+        print(path)
         return path
     except Exception as e:
         print(e)
