@@ -42,31 +42,28 @@ class Place(BaseModel, Base):
     longitude = Column(Float)
     amenity_ids = []
 
-    if getenv("HBNB_TYPE_STORAGE") == "db":
-        amenities = relationship(
-            'Amenity', secondary=place_amenity, viewonly=False)
-        reviews = relationship(
-            'Review',
-            backref='place',
-            cascade="all, delete, delete-orphan"
-        )
-    else:
-        @property
-        def reviews(self):
-            """ Getter that that returns the list of Reviews instances """
-            instances = models.storage.all(Review)
-            new = []
-            for review in instances.values():
-                if review.place_id == (self.id):
-                    new.append(review)
-            return new
+    reviews = relationship(
+        'Review',
+        backref='state',
+        cascade="all, delete, delete-orphan"
+    )
 
-        @reviews.setter
-        def amenities(self, obj):
-            """
-            Setter attribute amenities that handles append method
-            for adding an Amenity.id to the attribute amenity_ids.
-            """
-            from models.amenity import Amenity
-            if isinstance(obj, Amenity):
-                self.amenity_ids.append(obj.id)
+    @property
+    def reviews(self):
+        """ Getter that that returns the list of Reviews instances """
+        instances = models.storage.all(Review)
+        new = []
+        for review in instances.values():
+            if review.place_id == (self.id):
+                new.append(review)
+        return new
+
+    @reviews.setter
+    def amenities(self, obj):
+        """
+        Setter attribute amenities that handles append method
+        for adding an Amenity.id to the attribute amenity_ids.
+        """
+        from models.amenity import Amenity
+        if isinstance(obj, Amenity):
+            self.amenity_ids.append(obj.id)

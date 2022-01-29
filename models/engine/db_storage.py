@@ -41,18 +41,19 @@ class DBStorage:
         classDict = {"City": City, "State": State,
                      "User": User, "Place": Place,
                      "Review": Review, "Amenity": Amenity}
-
         objects = {}
         if cls is None:
             for className in classDict:
                 data = self.__session.query(classDict[className]).all()
                 for obj in data:
                     objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
-        elif (cls in classDict):
-            data = self.__session.query(classDict[cls]).all()
+
+        else:
+            if isinstance(cls, str):
+                cls = classDict[cls]
+            data = self.__session.query(cls).all()
             for obj in data:
                 objects[f"{obj.id}"] = obj
-
         return objects
 
     def new(self, obj):
@@ -85,3 +86,9 @@ class DBStorage:
             bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """
+        Call remove() method on the private session attribute
+        """
+        self.__session.close()
