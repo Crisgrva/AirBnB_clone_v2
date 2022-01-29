@@ -42,7 +42,7 @@ def task_2(text):
     returns 'C {text}'
     """
     text = text.replace("_", " ")
-    return f"C {text}"
+    return "C {}".format(text)
 
 
 @app.route("/python", strict_slashes=False, defaults={'text': 'is cool'})
@@ -54,7 +54,7 @@ def task_3(text):
     but has 'is cool' as default
     """
     text = text.replace("_", " ")
-    return f"Python {text}"
+    return "Python {}".format(text)
 
 
 if __name__ == "__main__":

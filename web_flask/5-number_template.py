@@ -47,7 +47,7 @@ def task_2(text):
     returns 'C {text}'
     """
     text = text.replace("_", " ")
-    return f"C {text}"
+    return "C {}".format(text)
 
 
 @app.route("/python", strict_slashes=False, defaults={'text': 'is cool'})
@@ -59,7 +59,7 @@ def task_3(text):
     but has 'is cool' as default
     """
     text = text.replace("_", " ")
-    return f"Python {text}"
+    return "Python {}".format(text)
 
 
 @app.route("/number/<int:n>", strict_slashes=False)
@@ -68,7 +68,7 @@ def task_4(n):
     Function that recieves an integer as route args
     and return '{n} is a number'
     """
-    return f"{n} is a number"
+    return "{} is a number".format(n)
 
 
 @app.route("/number_template/<int:n>", strict_slashes=False)
